@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require('uuid'); // genera _id univoco
 
 const app = express();
 
-const SECRET_KEY = 'supersegreta_jwt_2025';
+const SECRET_KEY = process.env.JWT_SECRET || 'supersegreta_jwt_2025';
 const PORT = process.env.PORT || 3001;
 const dataFile = path.join(__dirname, 'data', 'records.json');
 const usersFile = path.join(__dirname, 'data', 'users.json');
@@ -145,4 +145,10 @@ app.post('/api/login', async (req, res) => {
 /* ▶️ Avvio server */
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ Server in ascolto su http://localhost:${PORT}`);
+});
+app.get('/', (req, res) => {
+  res.send('API Assistenze attiva 🚀');
+});
+app.get('/', (req, res) => {
+  res.send('🚀 Backend attivo!');
 });
